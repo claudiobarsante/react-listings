@@ -1,5 +1,7 @@
-import { useState } from 'react';
+import { RouterProvider } from 'react-router-dom';
 
+import { router } from './routes';
+import './global.css';
 export function App() {
-	return <h1>Frontend assessment</h1>;
+  return <RouterProvider router={router} />;
 }
