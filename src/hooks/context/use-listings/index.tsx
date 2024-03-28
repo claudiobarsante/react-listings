@@ -1,4 +1,5 @@
-import { createContext, useCallback, useContext, useState } from 'react';
+import { createContext, useContext, useState } from 'react';
+import { filterListings } from 'utils/filter/search';
 
 export type Listing = {
   Id: number;
@@ -179,12 +180,23 @@ const INITIAL_VALUE: Listing[] = [
   }
 ];
 
+export type SearchFilters = {
+  bedrooms?: number;
+  bathrooms?: number;
+  parking?: number;
+  priceRange?: number;
+};
+
 type ListingsContextData = {
   listings: Listing[];
+  filtered: Listing[];
+  searchListings: ({ bedrooms, bathrooms, parking, priceRange }: SearchFilters) => void;
 };
 
 const ListingsContextValues = {
-  listings: []
+  listings: [],
+  filtered: [],
+  searchListings: () => null
 };
 
 const ListingsContext = createContext<ListingsContextData>(ListingsContextValues);
@@ -195,7 +207,15 @@ type ListingsProviderProps = {
 
 const ListingsProvider = ({ children }: ListingsProviderProps) => {
   const [listings] = useState<Listing[]>(INITIAL_VALUE);
-  return <ListingsContext.Provider value={{ listings: listings }}>{children}</ListingsContext.Provider>;
+  const [filtered, setFiltered] = useState<Listing[]>([]);
+
+  const searchListings = ({ bedrooms, bathrooms, parking, priceRange }: SearchFilters) => {
+    const filteredListings = filterListings({ listings, bedrooms, bathrooms, parking, priceRange });
+
+    setFiltered(filteredListings);
+  };
+
+  return <ListingsContext.Provider value={{ listings, filtered, searchListings }}>{children}</ListingsContext.Provider>;
 };
 
 const useListings = () => useContext(ListingsContext);

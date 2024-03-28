@@ -21,8 +21,9 @@ export function ListingCard(props: ListingCardProps) {
         <h2>{title}</h2>
         <p>{location}</p>
         <p>
-          {bedrooms}
-          {bathrooms}
+          {`${bedrooms} beds`}
+          {'|'}
+          {`${bathrooms} baths`}
         </p>
         <p>${price}</p>
         <button>View Details</button>
