@@ -1,4 +1,4 @@
-import { useState } from 'react';
+import { useState, useRef } from 'react';
 
 import { ListingCard } from 'components/listing-card';
 import { Select } from 'components/select';
@@ -21,7 +21,9 @@ const initialFiltersValues: Filter = {
 
 export function ListingsPage() {
   const [filters, setFilters] = useState<Filter>(initialFiltersValues);
-  const { listings, filtered, searchListings } = useListings();
+  const { listings, searchListings, resetListings } = useListings();
+
+  const selectRef = useRef<HTMLSelectElement[]>([]);
 
   const handleClick = () => {
     searchListings({
@@ -36,12 +38,41 @@ export function ListingsPage() {
     setFilters((previous) => ({ ...previous, [id]: parseInt(value) }));
   };
 
+  // -- in order to reset the <Select/> components, use ref to set the value to ' ' that is the initial value
+  const handleReset = () => {
+    setFilters(initialFiltersValues);
+    resetListings();
+    if (selectRef.current) {
+      selectRef.current[0].value = '';
+      selectRef.current[1].value = '';
+      selectRef.current[2].value = '';
+    }
+  };
+
   return (
     <>
       <div className="flex items-center justify-between">
-        <Select id="bedrooms" label="Bedrooms" maxValue={10} handleSelectChange={handleSelectChange} />
-        <Select id="bathrooms" label="Bathrooms" maxValue={10} handleSelectChange={handleSelectChange} />
-        <Select id="parking" label="Parking" maxValue={10} handleSelectChange={handleSelectChange} />
+        <Select
+          ref={(element) => element && (selectRef.current[0] = element)}
+          id="bedrooms"
+          label="Bedrooms"
+          maxValue={10}
+          handleSelectChange={handleSelectChange}
+        />
+        <Select
+          ref={(element) => element && (selectRef.current[1] = element)}
+          id="bathrooms"
+          label="Bathrooms"
+          maxValue={10}
+          handleSelectChange={handleSelectChange}
+        />
+        <Select
+          ref={(element) => element && (selectRef.current[2] = element)}
+          id="parking"
+          label="Parking"
+          maxValue={10}
+          handleSelectChange={handleSelectChange}
+        />
       </div>
       <section className="m-5 grid grid-cols-10 gap-5">
         {listings.length > 0 &&
@@ -57,8 +88,11 @@ export function ListingsPage() {
               price={listing['Sale Price']}
             />
           ))}
-        <button type="button" onClick={handleClick}>
+        <button aria-label="search" type="button" onClick={handleClick}>
           Search
+        </button>
+        <button aria-label="reset" type="button" onClick={handleReset}>
+          Reset
         </button>
       </section>
     </>

@@ -27,8 +27,8 @@ export type SearchFilters = {
 
 type ListingsContextData = {
   listings: Listing[];
-  filtered: Listing[];
   searchListings: ({ bedrooms, bathrooms, parking, priceRange }: SearchFilters) => void;
+  resetListings: () => void;
 };
 
 type ListingsProviderProps = {
@@ -37,23 +37,26 @@ type ListingsProviderProps = {
 
 const ListingsContextValues = {
   listings: [],
-  filtered: [],
-  searchListings: () => null
+  searchListings: () => null,
+  resetListings: () => null
 };
 
 const ListingsContext = createContext<ListingsContextData>(ListingsContextValues);
 
 const ListingsProvider = ({ children }: ListingsProviderProps) => {
   const [listings, setListings] = useState<Listing[]>(INITIAL_VALUE);
-  //const [filtered, setFiltered] = useState<Listing[]>([]);
 
   const searchListings = ({ bedrooms, bathrooms, parking, priceRange }: SearchFilters) => {
     const filteredListings = filterListings({ listings: INITIAL_VALUE, bedrooms, bathrooms, parking, priceRange });
     setListings(filteredListings);
   };
 
+  const resetListings = () => {
+    setListings(INITIAL_VALUE);
+  };
+
   return (
-    <ListingsContext.Provider value={{ listings, filtered: [], searchListings }}>{children}</ListingsContext.Provider>
+    <ListingsContext.Provider value={{ listings, searchListings, resetListings }}>{children}</ListingsContext.Provider>
   );
 };
 
