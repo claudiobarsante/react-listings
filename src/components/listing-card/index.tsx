@@ -1,3 +1,5 @@
+import { Link } from 'react-router-dom';
+
 type ListingCardProps = {
   id: number;
   bathrooms: number;
@@ -27,7 +29,7 @@ export function ListingCard(props: ListingCardProps) {
           {`${parking} parking`}
         </p>
         <p>${price}</p>
-        <button>View Details</button>
+        <Link to={`/listings/${id}`}>View Details</Link>
       </div>
     </article>
   );
