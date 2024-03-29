@@ -1,16 +1,15 @@
-import React from 'react';
-
 type ListingCardProps = {
   id: number;
+  bathrooms: number;
+  bedrooms: number;
+  location: string;
+  parking: number;
+  price: number;
   thumbnailURL: string;
   title: string;
-  location: string;
-  bedrooms: number;
-  bathrooms: number;
-  price: number;
 };
 export function ListingCard(props: ListingCardProps) {
-  const { id, thumbnailURL, title, location, bedrooms, bathrooms, price } = props;
+  const { id, bathrooms, bedrooms, location, parking, price, thumbnailURL, title } = props;
 
   return (
     <article className="max-w-sm rounded border border-gray-200 shadow-lg">
@@ -24,6 +23,8 @@ export function ListingCard(props: ListingCardProps) {
           {`${bedrooms} beds`}
           {'|'}
           {`${bathrooms} baths`}
+          {'|'}
+          {`${parking} parking`}
         </p>
         <p>${price}</p>
         <button>View Details</button>

@@ -80,12 +80,13 @@ export function ListingsPage() {
             <ListingCard
               key={listing.Id}
               id={listing.Id}
+              bathrooms={listing.Bathrooms}
+              bedrooms={listing.Bedrooms}
+              location={listing.Location}
+              parking={listing.Parking}
+              price={listing['Sale Price']}
               thumbnailURL={listing.ThumbnailURL}
               title={listing.Title}
-              location={listing.Location}
-              bedrooms={listing.Bedrooms}
-              bathrooms={listing.Bathrooms}
-              price={listing['Sale Price']}
             />
           ))}
         <button aria-label="search" type="button" onClick={handleClick}>
