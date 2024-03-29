@@ -44,8 +44,8 @@ export function ListingsPage() {
         <Select id="parking" label="Parking" maxValue={10} handleSelectChange={handleSelectChange} />
       </div>
       <section className="m-5 grid grid-cols-10 gap-5">
-        {filtered.length > 0 &&
-          filtered.map((listing) => (
+        {listings.length > 0 &&
+          listings.map((listing) => (
             <ListingCard
               key={listing.Id}
               id={listing.Id}
@@ -58,7 +58,7 @@ export function ListingsPage() {
             />
           ))}
         <button type="button" onClick={handleClick}>
-          Testar
+          Search
         </button>
       </section>
     </>

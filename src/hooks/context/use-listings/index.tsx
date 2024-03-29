@@ -44,15 +44,17 @@ const ListingsContextValues = {
 const ListingsContext = createContext<ListingsContextData>(ListingsContextValues);
 
 const ListingsProvider = ({ children }: ListingsProviderProps) => {
-  const [listings] = useState<Listing[]>(INITIAL_VALUE);
-  const [filtered, setFiltered] = useState<Listing[]>([]);
+  const [listings, setListings] = useState<Listing[]>(INITIAL_VALUE);
+  //const [filtered, setFiltered] = useState<Listing[]>([]);
 
   const searchListings = ({ bedrooms, bathrooms, parking, priceRange }: SearchFilters) => {
-    const filteredListings = filterListings({ listings, bedrooms, bathrooms, parking, priceRange });
-    setFiltered(filteredListings);
+    const filteredListings = filterListings({ listings: INITIAL_VALUE, bedrooms, bathrooms, parking, priceRange });
+    setListings(filteredListings);
   };
 
-  return <ListingsContext.Provider value={{ listings, filtered, searchListings }}>{children}</ListingsContext.Provider>;
+  return (
+    <ListingsContext.Provider value={{ listings, filtered: [], searchListings }}>{children}</ListingsContext.Provider>
+  );
 };
 
 const useListings = () => useContext(ListingsContext);
