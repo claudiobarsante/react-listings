@@ -1,4 +1,4 @@
-import { useState, useEffect, useId } from 'react';
+import { useState, useEffect, useId, memo } from 'react';
 import { twMerge } from 'tailwind-merge';
 
 import { loadSelectOptions } from 'utils/select/load-select-options';
@@ -15,8 +15,7 @@ export type Option = {
   value: string;
   text: string;
 };
-export function Select({ id, label, maxValue, handleSelectChange }: SelectProps) {
-  const [selected, setSelected] = useState('');
+function SelectComponent({ id, label, maxValue, handleSelectChange }: SelectProps) {
   const [option, setOption] = useState<Option[]>([]);
   const initialKey = useId();
 
@@ -29,7 +28,6 @@ export function Select({ id, label, maxValue, handleSelectChange }: SelectProps)
 
   function handleChange(event: React.ChangeEvent<HTMLSelectElement>) {
     const { value } = event.target;
-    setSelected(value);
     handleSelectChange(id, value);
   }
 
@@ -45,7 +43,6 @@ export function Select({ id, label, maxValue, handleSelectChange }: SelectProps)
             'focus:border-blue-500 focus:ring-blue-500'
           )}
           onChange={(e) => handleChange(e)}
-          value={selected}
         >
           {option.length > 0 &&
             option.map((o) => (
@@ -58,3 +55,7 @@ export function Select({ id, label, maxValue, handleSelectChange }: SelectProps)
     </article>
   );
 }
+
+export const Select = memo(SelectComponent, (prevProps, nextProps) => {
+  return Object.is(prevProps.id, nextProps.id);
+});
