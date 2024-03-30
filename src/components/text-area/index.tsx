@@ -3,7 +3,7 @@ import { twMerge } from 'tailwind-merge';
 
 type FormTextAreaProps = ComponentProps<'textarea'>;
 
-export default function FormTextArea(props: FormTextAreaProps) {
+export function FormTextArea(props: FormTextAreaProps) {
   return (
     <textarea
       className={twMerge(

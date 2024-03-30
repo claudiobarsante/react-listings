@@ -5,6 +5,7 @@ import { FormInput } from 'components/input/index';
 import FormTextArea from 'components/text-area';
 import { Button } from 'components/button';
 import { Heart } from 'lucide-react';
+import { ContactForm } from 'components/form';
 
 export function ListingDetailsPage() {
   const [listing, setListing] = useState<Listing>();
@@ -63,16 +64,7 @@ export function ListingDetailsPage() {
             <span className="pl-2">Save property</span>
           </Button>
         </div>
-        <form className="flex flex-col items-center justify-center gap-6 rounded-sm border border-zinc-200 bg-zinc-100 p-6">
-          <h3 className="font-semibold text-zinc-700">Contact Agent</h3>
-          <FormInput id="full-name" name="full-name" type="text" placeholder="Full Name *" />
-          <FormInput id="email" name="email" type="email" placeholder="Email *" />
-          <FormInput id="phone-number" name="phone-number" type="text" placeholder="Phone Number *" />
-          <FormTextArea id="comments" name="comments" placeholder="Comments *" />
-          <Button variant="primary" aria-label="contact now" className="px-12">
-            Contact Now
-          </Button>
-        </form>
+        <ContactForm />
       </section>
     </main>
   );
