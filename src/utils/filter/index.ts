@@ -1,3 +1,4 @@
+// -- types
 import { Listing, SearchFilters } from 'hooks/context/use-listings';
 
 type filterListings = {
@@ -15,4 +16,9 @@ export const filterListings = ({ listings, bedrooms, bathrooms, parking, priceRa
   });
 
   return filteredListings;
+};
+
+export const getListingById = (listings: Listing[], id: number): Listing | undefined => {
+  const listing = listings.find((listing) => listing.Id === id);
+  return listing;
 };

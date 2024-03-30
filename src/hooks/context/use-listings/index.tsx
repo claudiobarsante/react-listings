@@ -1,5 +1,5 @@
 import { createContext, useContext, useState } from 'react';
-import { filterListings } from 'utils/filter/search';
+import { filterListings, getListingById } from 'utils/filter';
 import { INITIAL_VALUE } from './data';
 
 export type Listing = {
@@ -29,6 +29,7 @@ type ListingsContextData = {
   listings: Listing[];
   searchListings: ({ bedrooms, bathrooms, parking, priceRange }: SearchFilters) => void;
   resetListings: () => void;
+  getListing: (id: number) => Listing | undefined;
 };
 
 type ListingsProviderProps = {
@@ -38,7 +39,8 @@ type ListingsProviderProps = {
 const ListingsContextValues = {
   listings: [],
   searchListings: () => null,
-  resetListings: () => null
+  resetListings: () => null,
+  getListing: () => undefined
 };
 
 const ListingsContext = createContext<ListingsContextData>(ListingsContextValues);
@@ -55,8 +57,15 @@ const ListingsProvider = ({ children }: ListingsProviderProps) => {
     setListings(INITIAL_VALUE);
   };
 
+  const getListing = (id: number): Listing | undefined => {
+    const listing = getListingById(listings, id);
+    return listing;
+  };
+
   return (
-    <ListingsContext.Provider value={{ listings, searchListings, resetListings }}>{children}</ListingsContext.Provider>
+    <ListingsContext.Provider value={{ listings, getListing, resetListings, searchListings }}>
+      {children}
+    </ListingsContext.Provider>
   );
 };
 
