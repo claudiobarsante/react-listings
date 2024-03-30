@@ -4,6 +4,7 @@ import { ListingCard } from 'components/listing-card';
 import { Select } from 'components/select';
 
 import { useListings } from 'hooks/context/use-listings';
+import { Button } from 'components/button';
 
 type Filter = {
   bedrooms: number | undefined;
@@ -83,18 +84,17 @@ export function ListingsPage() {
               bathrooms={listing.Bathrooms}
               bedrooms={listing.Bedrooms}
               location={listing.Location}
-              parking={listing.Parking}
               price={listing['Sale Price']}
               thumbnailURL={listing.ThumbnailURL}
               title={listing.Title}
             />
           ))}
-        <button aria-label="search" type="button" onClick={handleClick}>
+        <Button variant="primary" aria-label="search" type="button" onClick={handleClick}>
           Search
-        </button>
-        <button aria-label="reset" type="button" onClick={handleReset}>
+        </Button>
+        <Button variant="outline" aria-label="reset" type="button" onClick={handleReset}>
           Reset
-        </button>
+        </Button>
       </section>
     </>
   );

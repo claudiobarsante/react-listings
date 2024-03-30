@@ -3,6 +3,8 @@ import { useState, useEffect } from 'react';
 import { useParams } from 'react-router-dom';
 import { FormInput } from 'components/input/index';
 import FormTextArea from 'components/text-area';
+import { Button } from 'components/button';
+import { Heart } from 'lucide-react';
 
 export function ListingDetailsPage() {
   const [listing, setListing] = useState<Listing>();
@@ -56,7 +58,10 @@ export function ListingDetailsPage() {
       </section>
       <section>
         <div className="flex h-12 items-center justify-end">
-          <button>Save property</button>
+          <Button variant="primary" className="flex items-center justify-center">
+            <Heart className="size-4" />
+            <span className="pl-2">Save property</span>
+          </Button>
         </div>
         <form className="flex flex-col items-center justify-center gap-6 rounded-sm border border-zinc-200 bg-zinc-100 p-6">
           <h3 className="font-semibold text-zinc-700">Contact Agent</h3>
@@ -64,6 +69,9 @@ export function ListingDetailsPage() {
           <FormInput id="email" name="email" type="email" placeholder="Email *" />
           <FormInput id="phone-number" name="phone-number" type="text" placeholder="Phone Number *" />
           <FormTextArea id="comments" name="comments" placeholder="Comments *" />
+          <Button variant="primary" aria-label="contact now" className="px-12">
+            Contact Now
+          </Button>
         </form>
       </section>
     </main>
