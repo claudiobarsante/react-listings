@@ -7,7 +7,11 @@ export default {
     './src/components/**/**/*.{js,ts,jsx,tsx,mdx}'
   ],
   theme: {
-    extend: {}
+    extend: {
+      gridTemplateColumns: {
+        listingDetails: '60% 40%'
+      }
+    }
   },
   plugins: []
 };
