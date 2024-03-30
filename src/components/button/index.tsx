@@ -20,7 +20,7 @@ const button = tv({
   }
 });
 
-type ButtonProps = ComponentProps<'button'> & VariantProps<typeof button>;
+export type ButtonProps = ComponentProps<'button'> & VariantProps<typeof button>;
 
 export function Button({ variant, className, ...props }: ButtonProps) {
   return <button {...props} className={button({ variant, className })} />;

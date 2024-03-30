@@ -92,20 +92,8 @@ export function ListingsPage() {
           Reset
         </Button>
       </div>
-      <section className="m-5 grid grid-cols-10 gap-5">
-        {listings.length > 0 &&
-          listings.map((listing) => (
-            <ListingCard
-              key={listing.Id}
-              id={listing.Id}
-              bathrooms={listing.Bathrooms}
-              bedrooms={listing.Bedrooms}
-              location={listing.Location}
-              price={listing['Sale Price']}
-              thumbnailURL={listing.ThumbnailURL}
-              title={listing.Title}
-            />
-          ))}
+      <section className="m-5 grid grid-cols-5 gap-5">
+        {listings.length > 0 && listings.map((listing) => <ListingCard key={listing.Id} {...listing} />)}
       </section>
     </>
   );

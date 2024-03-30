@@ -1,33 +1,30 @@
 import { Link } from 'react-router-dom';
+import { Bath, BedDouble } from 'lucide-react';
+import { Card } from './components';
+//-- Types
+import { Listing } from 'hooks/context/use-listings';
 
-type ListingCardProps = {
-  id: number;
-  bathrooms: number;
-  bedrooms: number;
-  location: string;
-  price: number;
-  thumbnailURL: string;
-  title: string;
-};
-export function ListingCard(props: ListingCardProps) {
-  const { id, bathrooms, bedrooms, location, price, thumbnailURL, title } = props;
+export function ListingCard(props: Listing) {
+  const { Id, Title, 'Sale Price': SalePrice, ThumbnailURL, Location, Bedrooms, Bathrooms } = props;
 
   return (
-    <article className="max-w-sm rounded border border-gray-200 shadow-lg">
-      <figure>
-        <img className="w-full" src={thumbnailURL} alt={title} />
-      </figure>
-      <div className="flex flex-col justify-start gap-2">
-        <h2>{title}</h2>
-        <p>{location}</p>
-        <p>
-          {`${bedrooms} beds`}
-          {'|'}
-          {`${bathrooms} baths`}
-        </p>
-        <p>${price}</p>
-        <Link to={`/listings/${id}`}>View Details</Link>
-      </div>
-    </article>
+    <Card.Root>
+      <Card.Image src={ThumbnailURL} alt={Title} aria-label={Title.toLowerCase()} />
+      <Card.Content>
+        <Card.ListingTitle>{Title}</Card.ListingTitle>
+        <Card.ListingLocation>{Location}</Card.ListingLocation>
+        <Card.ListingInterior>
+          <BedDouble className="mb-0.5 mr-1 inline size-4" />
+          {Bedrooms} beds | <Bath className="mb-0.5 mr-1 inline size-4" />
+          {Bathrooms} baths
+        </Card.ListingInterior>
+        <Card.ListingPrice>${SalePrice}</Card.ListingPrice>
+        <Link to={`listings/${Id}`}>
+          <Card.ListingButton variant="primary" className="my-3">
+            View Details
+          </Card.ListingButton>
+        </Link>
+      </Card.Content>
+    </Card.Root>
   );
 }
