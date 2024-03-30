@@ -5,6 +5,7 @@ import { Select } from 'components/select';
 
 import { useListings } from 'hooks/context/use-listings';
 import { Button } from 'components/button';
+import { Slider } from 'components/slider';
 
 type Filter = {
   bedrooms: number | undefined;
@@ -25,8 +26,9 @@ export function ListingsPage() {
   const { listings, searchListings, resetListings } = useListings();
 
   const selectRef = useRef<HTMLSelectElement[]>([]);
+  const sliderRef = useRef<HTMLInputElement>(null);
 
-  const handleClick = () => {
+  const handleButtonSearchClick = () => {
     searchListings({
       bedrooms: filters.bedrooms,
       bathrooms: filters.bathrooms,
@@ -35,45 +37,60 @@ export function ListingsPage() {
     });
   };
 
-  const handleSelectChange = (id: string, value: string) => {
+  const handleFiltersValueChange = (id: string, value: string) => {
     setFilters((previous) => ({ ...previous, [id]: parseInt(value) }));
   };
 
-  // -- in order to reset the <Select/> components, use ref to set the value to ' ' that is the initial value
-  const handleReset = () => {
+  const handleButtonResetClick = () => {
     setFilters(initialFiltersValues);
     resetListings();
-    if (selectRef.current) {
+    if (selectRef.current && sliderRef.current) {
       selectRef.current[0].value = '';
       selectRef.current[1].value = '';
       selectRef.current[2].value = '';
+      sliderRef.current.value = '0';
     }
   };
 
   return (
     <>
-      <div className="flex items-center justify-between">
+      <div className="flex flex-1 items-center border border-red-300">
         <Select
           ref={(element) => element && (selectRef.current[0] = element)}
           id="bedrooms"
           label="Bedrooms"
           maxValue={10}
-          handleSelectChange={handleSelectChange}
+          onSelectValueChange={handleFiltersValueChange}
         />
         <Select
           ref={(element) => element && (selectRef.current[1] = element)}
           id="bathrooms"
           label="Bathrooms"
           maxValue={10}
-          handleSelectChange={handleSelectChange}
+          onSelectValueChange={handleFiltersValueChange}
         />
         <Select
           ref={(element) => element && (selectRef.current[2] = element)}
           id="parking"
           label="Parking"
           maxValue={10}
-          handleSelectChange={handleSelectChange}
+          onSelectValueChange={handleFiltersValueChange}
         />
+
+        <Slider
+          ref={sliderRef}
+          id="price"
+          label="Price Range"
+          maxValue={1000000}
+          onSliderValueChange={handleFiltersValueChange}
+        />
+
+        <Button variant="primary" aria-label="search" type="button" onClick={handleButtonSearchClick}>
+          Search
+        </Button>
+        <Button variant="outline" aria-label="reset" type="button" onClick={handleButtonResetClick}>
+          Reset
+        </Button>
       </div>
       <section className="m-5 grid grid-cols-10 gap-5">
         {listings.length > 0 &&
@@ -89,12 +106,6 @@ export function ListingsPage() {
               title={listing.Title}
             />
           ))}
-        <Button variant="primary" aria-label="search" type="button" onClick={handleClick}>
-          Search
-        </Button>
-        <Button variant="outline" aria-label="reset" type="button" onClick={handleReset}>
-          Reset
-        </Button>
       </section>
     </>
   );

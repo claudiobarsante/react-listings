@@ -7,7 +7,7 @@ type SelectProps = {
   id: 'bedrooms' | 'bathrooms' | 'parking';
   label: string;
   maxValue: number;
-  handleSelectChange: (id: string, selectedValue: string) => void;
+  onSelectValueChange: (id: string, selectedValue: string) => void;
 };
 
 export type Option = {
@@ -15,8 +15,13 @@ export type Option = {
   value: string;
   text: string;
 };
+/*About using forwardRef */
+// -- use forwardRef, beacause in the <ListingsPage/> there's a function
+// -- 'handleButtonResetClick()' that uses a ref to this component in order
+// -- to reset(set value='') the value of the <Select/> component
+
 const SelectComponent: React.ForwardRefRenderFunction<HTMLSelectElement, SelectProps> = (
-  { id, label, maxValue, handleSelectChange },
+  { id, label, maxValue, onSelectValueChange },
   ref
 ) => {
   const [option, setOption] = useState<Option[]>([]);
@@ -31,10 +36,8 @@ const SelectComponent: React.ForwardRefRenderFunction<HTMLSelectElement, SelectP
 
   function handleChange(event: React.ChangeEvent<HTMLSelectElement>) {
     const { value } = event.target;
-    handleSelectChange(id, value);
+    onSelectValueChange(id, value);
   }
-
-  console.log('---rederizou---', id);
 
   return (
     <article>
@@ -42,9 +45,9 @@ const SelectComponent: React.ForwardRefRenderFunction<HTMLSelectElement, SelectP
         {label}
         <select
           ref={ref}
-          aria-label={`select ${label.toLowerCase()}`}
+          aria-label={`${label.toLowerCase()}`}
           className={twMerge(
-            'rounded-lg border border-gray-300 bg-gray-50',
+            'rounded-lg border border-gray-300 bg-gray-200',
             'p-2.5 text-sm text-gray-900',
             'focus:border-blue-500 focus:ring-blue-500'
           )}
