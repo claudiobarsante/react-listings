@@ -3,6 +3,7 @@ import { Bath, BedDouble } from 'lucide-react';
 import { Card } from './components';
 //-- Types
 import { Listing } from 'hooks/context/use-listings';
+import { formatPrice } from 'utils/format';
 
 export function ListingCard(props: Listing) {
   const { Id, Title, 'Sale Price': SalePrice, ThumbnailURL, Location, Bedrooms, Bathrooms } = props;
@@ -18,7 +19,7 @@ export function ListingCard(props: Listing) {
           {Bedrooms} beds | <Bath className="mb-0.5 mr-1 inline size-4" />
           {Bathrooms} baths
         </Card.ListingInterior>
-        <Card.ListingPrice>${SalePrice}</Card.ListingPrice>
+        <Card.ListingPrice>{formatPrice(SalePrice)}</Card.ListingPrice>
         <Link to={`listings/${Id}`}>
           <Card.ListingButton variant="primary" className="my-3">
             View Details

@@ -1,38 +1,5 @@
 import { Button, ButtonProps } from 'components/button';
 import { ComponentProps } from 'react';
-import { Link } from 'react-router-dom';
-
-// type ListingCardProps = {
-//   id: number;
-//   bathrooms: number;
-//   bedrooms: number;
-//   location: string;
-//   price: number;
-//   thumbnailURL: string;
-//   title: string;
-// };
-// function ListingCard(props: ListingCardProps) {
-//   const { id, bathrooms, bedrooms, location, price, thumbnailURL, title } = props;
-
-//   return (
-//     <article className="max-w-sm rounded border border-gray-200 shadow-lg">
-//       <figure>
-//         <img className="w-full" src={thumbnailURL} alt={title} />
-//       </figure>
-//       <div className="flex flex-col justify-start gap-2">
-//         <h2>{title}</h2>
-//         <p>{location}</p>
-//         <p>
-//           {`${bedrooms} beds`}
-//           {'|'}
-//           {`${bathrooms} baths`}
-//         </p>
-//         <p>${price}</p>
-//         <Link to={`/listings/${id}`}>View Details</Link>
-//       </div>
-//     </article>
-//   );
-// }
 
 type CardRootProps = ComponentProps<'article'>;
 function CardRoot(props: CardRootProps) {
