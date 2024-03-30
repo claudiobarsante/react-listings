@@ -76,7 +76,7 @@ export function Form() {
         error={errors.comments?.message}
       />
 
-      <Button disabled={isSubmitting} variant="primary" aria-label="contact now" className="px-12" type="submit">
+      <Button disabled={isSubmitting} variant="primary" aria-label="contact now" className="mt-4 px-12" type="submit">
         Contact Now
       </Button>
     </form>

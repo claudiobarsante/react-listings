@@ -8,7 +8,7 @@ type FormInputProps = {
 const FormInputComponent: React.ForwardRefRenderFunction<HTMLInputElement, FormInputProps> = (props, ref) => {
   const { error } = props;
   return (
-    <div className="flex w-full flex-col justify-start gap-0.5">
+    <div className="relative flex w-full flex-col justify-start">
       <input
         ref={ref}
         className={twMerge(
@@ -19,7 +19,7 @@ const FormInputComponent: React.ForwardRefRenderFunction<HTMLInputElement, FormI
         {...props}
       />
 
-      <span role="alert" className="text-xs font-medium text-red-500">
+      <span role="alert" className="absolute left-1 top-8 text-xs font-medium text-red-500">
         {error?.toString()}
       </span>
     </div>
