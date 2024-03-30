@@ -1,10 +1,12 @@
-import { ComponentProps } from 'react';
+import { ComponentProps, forwardRef } from 'react';
 import { twMerge } from 'tailwind-merge';
 
-type FromInputProps = ComponentProps<'input'>;
-export function FormInput(props: FromInputProps) {
+type FormInputProps = ComponentProps<'input'>;
+// -- had to add forwardRef in order to o register the component's ref (react-hook-form)
+const FormInputComponent: React.ForwardRefRenderFunction<HTMLInputElement, FormInputProps> = (props, ref) => {
   return (
     <input
+      ref={ref}
       className={twMerge(
         'w-full rounded-sm border border-zinc-300 p-1 font-medium',
         'text-md text-zinc-700 placeholder-zinc-400 shadow-sm outline-none',
@@ -13,4 +15,6 @@ export function FormInput(props: FromInputProps) {
       {...props}
     />
   );
-}
+};
+
+export const FormInput = forwardRef(FormInputComponent);

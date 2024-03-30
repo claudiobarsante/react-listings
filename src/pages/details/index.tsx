@@ -1,11 +1,10 @@
 import { Listing, useListings } from 'hooks/context/use-listings';
 import { useState, useEffect } from 'react';
 import { useParams } from 'react-router-dom';
-import { FormInput } from 'components/input/index';
-import FormTextArea from 'components/text-area';
+
 import { Button } from 'components/button';
 import { Heart } from 'lucide-react';
-import { ContactForm } from 'components/form';
+import { Form } from 'components/form';
 
 export function ListingDetailsPage() {
   const [listing, setListing] = useState<Listing>();
@@ -64,7 +63,7 @@ export function ListingDetailsPage() {
             <span className="pl-2">Save property</span>
           </Button>
         </div>
-        <ContactForm />
+        <Form />
       </section>
     </main>
   );
