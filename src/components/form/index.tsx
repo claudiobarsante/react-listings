@@ -1,39 +1,76 @@
 import { useForm, SubmitHandler } from 'react-hook-form';
 import { toast } from 'sonner';
-import { z } from 'zod';
+import { yupResolver } from '@hookform/resolvers/yup';
+import * as yup from 'yup';
 
 import { Button } from 'components/button';
 import { FormInput } from 'components/input';
 import { FormTextArea } from 'components/text-area';
 
-const schema = z.object({
-  fullname: z.string().min(5, { message: 'Full name must be at least 5 characters' }),
-  email: z.string().email({ message: 'Invalid email address' }),
-  phonenumber: z.string().min(6, { message: 'Phone number must be at least 6 characters' }),
-  comments: z.string().min(10, { message: 'Comments must be at least 10 characters' })
+const schema = yup.object({
+  fullname: yup.string().required('Full name is required'),
+  email: yup.string().required('E-mail is required').email('Invalid email address'),
+  phonenumber: yup.number().positive().integer().required('Phone number is required'),
+  comments: yup.string().required('Comments must be at least 10 characters')
 });
 
-type ContactForm = z.infer<typeof schema>;
+type ContactForm = yup.InferType<typeof schema>;
 export function Form() {
   const {
     register,
     handleSubmit,
     formState: { isSubmitting, errors }
-  } = useForm<ContactForm>();
+  } = useForm<ContactForm>({
+    resolver: yupResolver(schema)
+  });
 
   const handleContactFormSubmit: SubmitHandler<ContactForm> = (data: ContactForm) => {
-    console.log('--data', data);
+    console.log('--data', data, errors);
   };
   return (
     <form
+      aria-labelledby="contact"
       onSubmit={handleSubmit(handleContactFormSubmit)}
       className="flex flex-col items-center justify-center gap-6 rounded-sm border border-zinc-200 bg-zinc-100 p-6"
     >
-      <h3 className="font-semibold text-zinc-700">Contact Agent</h3>
-      <FormInput id="fullname" type="text" placeholder="Full Name *" {...register('fullname')} />
-      <FormInput id="email" type="email" placeholder="Email *" {...register('email')} />
-      <FormInput id="phonenumber" type="number" placeholder="Phone Number *" {...register('phonenumber')} />
-      <FormTextArea id="comments" placeholder="Comments *" {...register('comments')} />
+      <h3 id="contact" className="font-semibold text-zinc-700">
+        Contact Agent
+      </h3>
+      <FormInput
+        id="fullname"
+        type="text"
+        placeholder="Full Name *"
+        {...register('fullname')}
+        aria-label="full name"
+        aria-invalid={errors.fullname ? 'true' : 'false'}
+        error={errors.fullname?.message}
+      />
+      <FormInput
+        id="email"
+        type="email"
+        placeholder="Email *"
+        {...register('email')}
+        aria-label="email"
+        aria-invalid={errors.email ? 'true' : 'false'}
+        error={errors.email?.message}
+      />
+      <FormInput
+        id="phonenumber"
+        type="number"
+        placeholder="Phone Number *"
+        {...register('phonenumber')}
+        aria-label="phone number"
+        aria-invalid={errors.phonenumber ? 'true' : 'false'}
+        error={errors.phonenumber?.message}
+      />
+      <FormTextArea
+        id="comments"
+        placeholder="Comments *"
+        {...register('comments')}
+        aria-label="comments"
+        aria-invalid={errors.comments ? 'true' : 'false'}
+        error={errors.comments?.message}
+      />
       <Button disabled={isSubmitting} variant="primary" aria-label="contact now" className="px-12" type="submit">
         Contact Now
       </Button>
