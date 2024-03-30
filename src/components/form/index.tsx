@@ -31,54 +31,52 @@ export function Form() {
     });
   };
   return (
-    <form
-      aria-labelledby="contact"
-      onSubmit={handleSubmit(handleContactFormSubmit)}
-      className="flex flex-col items-center justify-center gap-6 rounded-sm border border-zinc-200 bg-zinc-100 p-6"
-    >
-      <h3 id="contact" className="font-semibold text-zinc-700">
-        Contact Agent
-      </h3>
+    <form aria-labelledby="contact" onSubmit={handleSubmit(handleContactFormSubmit)}>
+      <fieldset className="flex flex-col items-center justify-center gap-6 rounded-sm border border-zinc-200 bg-zinc-100 p-6">
+        <h3 id="contact" className="font-semibold text-zinc-700">
+          Contact Agent
+        </h3>
 
-      <FormInput
-        id="fullname"
-        type="text"
-        placeholder="Full Name *"
-        {...register('fullname')}
-        aria-label="full name"
-        aria-invalid={errors.fullname ? 'true' : 'false'}
-        error={errors.fullname?.message}
-      />
-      <FormInput
-        id="email"
-        type="email"
-        placeholder="Email *"
-        {...register('email')}
-        aria-label="email"
-        aria-invalid={errors.email ? 'true' : 'false'}
-        error={errors.email?.message}
-      />
-      <FormInput
-        id="phonenumber"
-        type="number"
-        placeholder="Phone Number *"
-        {...register('phonenumber')}
-        aria-label="phone number"
-        aria-invalid={errors.phonenumber ? 'true' : 'false'}
-        error={errors.phonenumber?.message}
-      />
-      <FormTextArea
-        id="comments"
-        placeholder="Comments *"
-        {...register('comments')}
-        aria-label="comments"
-        aria-invalid={errors.comments ? 'true' : 'false'}
-        error={errors.comments?.message}
-      />
+        <FormInput
+          id="fullname"
+          type="text"
+          placeholder="Full Name *"
+          {...register('fullname')}
+          aria-label="full name"
+          aria-invalid={errors.fullname ? 'true' : 'false'}
+          error={errors.fullname?.message}
+        />
+        <FormInput
+          id="email"
+          type="email"
+          placeholder="Email *"
+          {...register('email')}
+          aria-label="email"
+          aria-invalid={errors.email ? 'true' : 'false'}
+          error={errors.email?.message}
+        />
+        <FormInput
+          id="phonenumber"
+          type="number"
+          placeholder="Phone Number *"
+          {...register('phonenumber')}
+          aria-label="phone number"
+          aria-invalid={errors.phonenumber ? 'true' : 'false'}
+          error={errors.phonenumber?.message}
+        />
+        <FormTextArea
+          id="comments"
+          placeholder="Comments *"
+          {...register('comments')}
+          aria-label="comments"
+          aria-invalid={errors.comments ? 'true' : 'false'}
+          error={errors.comments?.message}
+        />
 
-      <Button disabled={isSubmitting} variant="primary" aria-label="contact now" className="mt-4 px-12" type="submit">
-        Contact Now
-      </Button>
+        <Button disabled={isSubmitting} variant="primary" aria-label="contact now" className="mt-4 px-12" type="submit">
+          Contact Now
+        </Button>
+      </fieldset>
     </form>
   );
 }
