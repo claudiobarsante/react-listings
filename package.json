@@ -22,8 +22,7 @@
     "sort-by": "^1.2.0",
     "tailwind-merge": "^2.2.2",
     "tailwind-variants": "^0.2.1",
-    "yup": "^1.4.0",
-    "zod": "^3.22.4"
+    "yup": "^1.4.0"
   },
   "devDependencies": {
     "@types/node": "^20.11.30",
