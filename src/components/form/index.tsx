@@ -10,7 +10,7 @@ import { FormTextArea } from 'components/text-area';
 const schema = yup.object({
   fullname: yup.string().required('Full name is required'),
   email: yup.string().required('E-mail is required').email('Invalid email address'),
-  phonenumber: yup.number().positive().integer().required('Phone number is required'),
+  phonenumber: yup.string().required('Phone number is required'),
   comments: yup.string().required('Comments must be at least 10 characters')
 });
 
@@ -25,7 +25,10 @@ export function Form() {
   });
 
   const handleContactFormSubmit: SubmitHandler<ContactForm> = (data: ContactForm) => {
-    console.log('--data', data, errors);
+    console.log('passei', data);
+    toast.success('Your message has been sent', {
+      position: 'top-center'
+    });
   };
   return (
     <form
@@ -36,6 +39,7 @@ export function Form() {
       <h3 id="contact" className="font-semibold text-zinc-700">
         Contact Agent
       </h3>
+
       <FormInput
         id="fullname"
         type="text"
@@ -71,6 +75,7 @@ export function Form() {
         aria-invalid={errors.comments ? 'true' : 'false'}
         error={errors.comments?.message}
       />
+
       <Button disabled={isSubmitting} variant="primary" aria-label="contact now" className="px-12" type="submit">
         Contact Now
       </Button>

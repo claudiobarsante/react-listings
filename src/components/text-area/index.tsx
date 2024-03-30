@@ -2,7 +2,7 @@ import { ComponentProps, forwardRef } from 'react';
 import { twMerge } from 'tailwind-merge';
 
 type FormTextAreaProps = {
-  error: unknown;
+  error: string | undefined;
 } & ComponentProps<'textarea'>;
 // -- had to add forwardRef in order to register the component's ref (react-hook-form)
 const FormTextAreaComponent: React.ForwardRefRenderFunction<HTMLTextAreaElement, FormTextAreaProps> = (props, ref) => {
