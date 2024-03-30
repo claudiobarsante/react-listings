@@ -2,6 +2,7 @@ import { Listing, useListings } from 'hooks/context/use-listings';
 import { useState, useEffect } from 'react';
 import { useParams } from 'react-router-dom';
 import { FormInput } from 'components/input/index';
+import FormTextArea from 'components/text-area';
 
 export function ListingDetailsPage() {
   const [listing, setListing] = useState<Listing>();
@@ -62,6 +63,7 @@ export function ListingDetailsPage() {
           <FormInput id="full-name" name="full-name" type="text" placeholder="Full Name *" />
           <FormInput id="email" name="email" type="email" placeholder="Email *" />
           <FormInput id="phone-number" name="phone-number" type="text" placeholder="Phone Number *" />
+          <FormTextArea id="comments" name="comments" placeholder="Comments *" />
         </form>
       </section>
     </main>
