@@ -1,12 +1,15 @@
 import { forwardRef, useRef } from 'react';
 import mergeRefs from 'merge-refs';
 
+import { formatPrice } from 'utils/format';
+
 type SliderProps = {
   id: string;
   label: string;
   maxValue: number;
   onSliderValueChange: (id: string, selectedValue: string) => void;
 };
+
 /*About using forwardRef */
 // -- use forwardRef, beacause in the <ListingsPage/> there's a function
 // -- 'handleButtonResetClick()' that uses a ref to this component in order
@@ -14,6 +17,7 @@ type SliderProps = {
 /*About using another ref to the same component*/
 // -- the primary purpose of inputRef here is to access the current value of the
 // -- input element and display it in a <span> element next to the slider
+
 const SliderComponent: React.ForwardRefRenderFunction<HTMLInputElement, SliderProps> = (
   { id, label, maxValue, onSliderValueChange },
   ref
@@ -41,7 +45,9 @@ const SliderComponent: React.ForwardRefRenderFunction<HTMLInputElement, SliderPr
         className="h-2 w-full cursor-pointer appearance-none rounded-lg bg-gray-200"
         onChange={(e) => handleChange(e)}
       />
-      <span className="absolute right-2 top-2 text-sm text-zinc-700">{inputRef.current && inputRef.current.value}</span>
+      <span className="absolute right-2 top-2 text-sm text-zinc-700">
+        {inputRef.current && formatPrice(Number(inputRef.current.value))}
+      </span>
     </article>
   );
 };

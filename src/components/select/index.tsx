@@ -15,6 +15,7 @@ export type Option = {
   value: string;
   text: string;
 };
+
 /*About using forwardRef */
 // -- use forwardRef, beacause in the <ListingsPage/> there's a function
 // -- 'handleButtonResetClick()' that uses a ref to this component in order
@@ -41,15 +42,15 @@ const SelectComponent: React.ForwardRefRenderFunction<HTMLSelectElement, SelectP
 
   return (
     <article>
-      <label>
+      <label className="text-md mr-2 border border-zinc-950 font-medium text-zinc-700">
         {label}
         <select
           ref={ref}
           aria-label={`${label.toLowerCase()}`}
           className={twMerge(
-            'rounded-lg border border-gray-300 bg-gray-200',
-            'p-2.5 text-sm text-gray-900',
-            'focus:border-blue-500 focus:ring-blue-500'
+            'rounded-sm border border-zinc-300 bg-gray-200 font-medium',
+            'p-2.5 text-sm text-zinc-700',
+            'focus:border-zinc-400 focus:ring-4 focus:ring-zinc-200'
           )}
           onChange={(e) => handleChange(e)}
         >
