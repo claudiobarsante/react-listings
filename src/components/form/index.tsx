@@ -45,8 +45,8 @@ export function Form() {
   return (
     <form aria-labelledby="contact" onSubmit={handleSubmit(handleContactFormSubmit)}>
       <fieldset>
-        <div className="flex flex-col items-center justify-center gap-6 rounded-sm border border-zinc-200 bg-zinc-100 p-6">
-          <h2 id="contact" className="font-semibold text-zinc-700">
+        <div className="flex h-[24.2rem] flex-col items-center justify-center gap-4 rounded-sm border border-zinc-200 bg-zinc-100 px-4">
+          <h2 id="contact" className="mt-2 font-semibold text-zinc-700">
             Contact Agent
           </h2>
 
@@ -86,13 +86,7 @@ export function Form() {
             error={errors.comments?.message}
           />
 
-          <Button
-            disabled={isSubmitting}
-            variant="primary"
-            aria-label="contact now"
-            className="mt-4 px-12"
-            type="submit"
-          >
+          <Button disabled={isSubmitting} variant="primary" aria-label="contact now" className=" px-12" type="submit">
             Contact Now
           </Button>
         </div>

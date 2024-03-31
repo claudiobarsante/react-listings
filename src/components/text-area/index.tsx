@@ -12,7 +12,7 @@ const FormTextAreaComponent: React.ForwardRefRenderFunction<HTMLTextAreaElement,
       <textarea
         ref={ref}
         className={twMerge(
-          'min-h-[120px] w-full rounded-sm border border-zinc-300 p-1 font-medium',
+          'min-h-[110px] w-full rounded-sm border border-zinc-300 p-1 font-medium',
           'text-md text-zinc-700 placeholder-zinc-400 shadow-sm outline-none',
           'focus:border-zinc-400 focus:ring-4 focus:ring-zinc-200'
         )}
