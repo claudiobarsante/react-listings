@@ -9,6 +9,7 @@ export default {
   theme: {
     extend: {
       gridTemplateColumns: {
+        app: '20% 60% 20%',
         listingDetails: '60% 40%'
       }
     }
