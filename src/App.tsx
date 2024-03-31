@@ -1,5 +1,6 @@
 import { RouterProvider } from 'react-router-dom';
 import { ErrorBoundary } from 'react-error-boundary';
+import { Helmet, HelmetProvider } from 'react-helmet-async';
 import { Toaster } from 'sonner';
 
 import { ErrorPage } from 'pages/error';
@@ -10,10 +11,13 @@ import './global.css';
 export function App() {
   return (
     <ListingsProvider>
-      <Toaster richColors />
-      <ErrorBoundary FallbackComponent={ErrorPage}>
-        <RouterProvider router={router} />
-      </ErrorBoundary>
+      <HelmetProvider>
+        <Helmet titleTemplate="⚡ %s | Frontend assessment" />
+        <Toaster richColors />
+        <ErrorBoundary FallbackComponent={ErrorPage}>
+          <RouterProvider router={router} />
+        </ErrorBoundary>
+      </HelmetProvider>
     </ListingsProvider>
   );
 }

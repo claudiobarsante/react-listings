@@ -39,7 +39,7 @@ const SelectComponent: React.ForwardRefRenderFunction<HTMLSelectElement, SelectP
     const { value } = event.target;
     onSelectValueChange(id, value);
   }
-
+  console.log('-render⚡ ', id);
   return (
     <article className="flex items-center justify-start gap-2">
       <label className="text-md font-medium text-zinc-700" aria-label={`${label.toLowerCase()}`}>
@@ -68,5 +68,5 @@ const SelectComponent: React.ForwardRefRenderFunction<HTMLSelectElement, SelectP
 
 //todo: check why is rerendering if the props didn't change, something to do with refs
 export const Select = memo(forwardRef(SelectComponent), (prevProps, nextProps) => {
-  return Object.is(prevProps.label, nextProps.label);
+  return Object.is(prevProps.onSelectValueChange, nextProps.onSelectValueChange);
 });
