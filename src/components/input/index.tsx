@@ -4,7 +4,7 @@ import { twMerge } from 'tailwind-merge';
 type FormInputProps = {
   error: string | undefined;
 } & ComponentProps<'input'>;
-// -- had to add forwardRef in order to o register the component's ref (react-hook-form)
+// -- add forwardRef in order to use 'register' - register uses ref -  (react-hook-form) - see documentation
 const FormInputComponent: React.ForwardRefRenderFunction<HTMLInputElement, FormInputProps> = (props, ref) => {
   const { error } = props;
   return (
@@ -18,7 +18,6 @@ const FormInputComponent: React.ForwardRefRenderFunction<HTMLInputElement, FormI
         )}
         {...props}
       />
-
       <span role="alert" className="absolute left-1 top-8 text-xs font-medium text-red-500">
         {error?.toString()}
       </span>
