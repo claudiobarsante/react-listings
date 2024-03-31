@@ -33,7 +33,7 @@ function CardListingTitle(props: CardListingTitleProps) {
 
 type CardListingLocationProps = ComponentProps<'span'>;
 function CardListingLocation(props: CardListingLocationProps) {
-  return <span className="absolute top-48 text-sm leading-none text-zinc-500" {...props}></span>;
+  return <span className="absolute top-52 text-sm leading-none text-zinc-500" {...props}></span>;
 }
 
 type CardListingInteriorProps = ComponentProps<'span'>;
