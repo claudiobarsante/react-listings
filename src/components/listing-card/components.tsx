@@ -4,10 +4,7 @@ import { ComponentProps } from 'react';
 type CardRootProps = ComponentProps<'article'>;
 function CardRoot(props: CardRootProps) {
   return (
-    <article
-      className="relative h-[24rem] max-w-[16rem] rounded-sm border border-zinc-200 shadow-xl"
-      {...props}
-    ></article>
+    <article className="relative h-[24rem] w-full rounded-sm border border-zinc-200 shadow-xl" {...props}></article>
   );
 }
 
@@ -15,7 +12,7 @@ type CardImageProps = ComponentProps<'img'>;
 function CardImage(props: CardImageProps) {
   return (
     <figure>
-      <img className="h-[9rem] w-full" {...props} />
+      <img className="h-[11rem] w-full object-cover lg:h-[9rem]" {...props} />
     </figure>
   );
 }
@@ -33,13 +30,13 @@ function CardListingTitle(props: CardListingTitleProps) {
 
 type CardListingLocationProps = ComponentProps<'span'>;
 function CardListingLocation(props: CardListingLocationProps) {
-  return <span className="absolute top-52 text-sm leading-none text-zinc-500" {...props}></span>;
+  return <span className="absolute top-60 text-sm leading-none text-zinc-500 lg:top-52" {...props}></span>;
 }
 
 type CardListingInteriorProps = ComponentProps<'span'>;
 function CardListingInterior(props: CardListingInteriorProps) {
   return (
-    <div className="absolute bottom-28 flex items-center justify-start pt-2">
+    <div className="absolute bottom-24 flex items-center justify-start pt-2 lg:bottom-28">
       <span className="text-sm text-zinc-500" {...props}></span>
     </div>
   );

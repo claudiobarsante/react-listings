@@ -39,9 +39,9 @@ const SelectComponent: React.ForwardRefRenderFunction<HTMLSelectElement, SelectP
     const { value } = event.target;
     onSelectValueChange(id, value);
   }
-  console.log('-render⚡ ', id);
+
   return (
-    <article className="flex items-center justify-start gap-2">
+    <article className="flex items-center justify-between gap-2">
       <label className="text-md font-medium text-zinc-700" aria-label={`${label.toLowerCase()}`}>
         {label}
       </label>
@@ -50,7 +50,7 @@ const SelectComponent: React.ForwardRefRenderFunction<HTMLSelectElement, SelectP
         aria-label={`${label.toLowerCase()}`}
         className={twMerge(
           'h-[35px] rounded-sm border border-zinc-300 bg-gray-200 font-medium outline-none',
-          'p-1 text-sm text-zinc-700',
+          'mr-3 p-1 text-sm text-zinc-700',
           'focus:border-zinc-400 focus:ring-4 focus:ring-zinc-200'
         )}
         onChange={(e) => handleChange(e)}

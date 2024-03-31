@@ -25,7 +25,7 @@ const SliderComponent: React.ForwardRefRenderFunction<HTMLInputElement, SliderPr
   }
 
   return (
-    <article className="relative flex w-96 items-center justify-start gap-2 py-6">
+    <article className="relative flex w-full items-center justify-between gap-2 py-6 lg:w-96 lg:px-5">
       <label htmlFor={id} className="text-md text-nowrap font-medium text-zinc-700" aria-labelledby={id}>
         {label}
       </label>
@@ -40,7 +40,9 @@ const SliderComponent: React.ForwardRefRenderFunction<HTMLInputElement, SliderPr
         className="h-2 w-full cursor-pointer appearance-none rounded-lg bg-gray-200"
         onChange={(e) => handleChange(e)}
       />
-      <span className="absolute right-2 top-2 text-sm text-zinc-700">{formatPrice(Number(sliderValue))}</span>
+      <span className="absolute right-2 top-2 text-sm text-zinc-700 lg:right-5">
+        {formatPrice(Number(sliderValue))}
+      </span>
     </article>
   );
 };

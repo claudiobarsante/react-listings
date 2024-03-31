@@ -1,10 +1,11 @@
 import { useRef } from 'react';
+import { twMerge } from 'tailwind-merge';
 
+import { Button } from 'components/button';
+import { Slider } from 'components/slider';
 import { Select } from 'components/select';
 
 import { useListings } from 'hooks/context/use-listings';
-import { Button } from 'components/button';
-import { Slider } from 'components/slider';
 
 type Filter = {
   bedrooms: number | undefined;
@@ -52,7 +53,9 @@ export function ListingsSearch() {
   };
 
   return (
-    <section className="flex items-center justify-between px-6">
+    <section
+      className={twMerge('flex w-auto lg:flex-row lg:items-center lg:justify-between', 'mb-3 flex-col gap-y-4 pt-4')}
+    >
       <Select
         ref={(element) => element && (selectRef.current[0] = element)}
         id="bedrooms"
@@ -82,7 +85,7 @@ export function ListingsSearch() {
         maxValue={1000000}
         onSliderValueChange={handleFiltersValueChange}
       />
-      <div className="flex items-center justify-normal gap-5">
+      <div className="flex items-center justify-normal gap-5 lg:pl-5">
         <Button variant="primary" aria-label="search" type="button" onClick={handleButtonSearchClick}>
           Search
         </Button>
