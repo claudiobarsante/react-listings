@@ -6,6 +6,7 @@ import { Listing, useListings } from 'hooks/context/use-listings';
 import { Button } from 'components/button';
 import { Heart } from 'lucide-react';
 import { Form } from 'components/form';
+import { formatPrice } from './../../utils/format/index';
 
 export function ListingDetailsPage() {
   const [listing, setListing] = useState<Listing>();
@@ -27,18 +28,20 @@ export function ListingDetailsPage() {
         <title>Listing Details</title>
         <meta
           name="description"
-          content={`Details for the listing ${listing?.Title} in ${listing?.Location} with form to contact agent.`}
+          content={`Details for the listing ${listing?.Title} in ${listing?.Location} with form to contact agent. ${listing?.Description}`}
         />
       </Helmet>
-      <main className="grid-cols-listingDetails grid max-w-7xl gap-10">
+      <div className="grid max-w-7xl grid-cols-listingDetails gap-10">
         <section>
-          <div className="flex h-12 justify-between">
+          <div className="flex h-24 justify-between border border-blue-500">
             <div>
-              <h2>{listing?.Title}</h2>
-              <h3>{listing?.Location}</h3>
+              <h2 className="text-lg font-semibold tracking-tight text-zinc-800">{listing?.Title}</h2>
+              <h3 className="text-md font-normal tracking-tight text-zinc-700">{listing?.Location}</h3>
             </div>
             <div>
-              <h2>{listing?.['Sale Price']}</h2>
+              <h2 className=" border border-yellow-400 text-right text-lg font-semibold tracking-tight text-zinc-800">
+                {formatPrice(listing?.['Sale Price'] || 0)}
+              </h2>
               <h3>{listing?.DateListed}</h3>
             </div>
           </div>
@@ -78,7 +81,7 @@ export function ListingDetailsPage() {
           </div>
           <Form />
         </section>
-      </main>
+      </div>
     </>
   );
 }

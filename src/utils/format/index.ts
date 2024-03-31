@@ -1,6 +1,7 @@
 type FormatType = {
   [key: number]: string;
 };
+
 export const formatPrice = (price: number): string => {
   if (!price) return '';
 
@@ -20,4 +21,23 @@ export const formatPrice = (price: number): string => {
   };
 
   return format[length];
+};
+
+const MONTHS_ABBREVIATIONS = ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec'];
+
+export const formatDate = (date: string): string => {
+  let output = '';
+  try {
+    const currentDate: Date = new Date(date);
+    const month: number = currentDate.getMonth();
+    const monthAbbreviation = MONTHS_ABBREVIATIONS[month];
+    const day = String(currentDate.getDate()).padStart(2, '0');
+
+    const year = currentDate.getFullYear();
+
+    output = `${monthAbbreviation} ${day}, ${year}`;
+  } catch (error) {
+    output = 'error';
+  }
+  return output;
 };
