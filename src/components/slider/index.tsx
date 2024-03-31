@@ -26,6 +26,7 @@ const SliderComponent: React.ForwardRefRenderFunction<HTMLInputElement, SliderPr
 
   function handleChange(event: React.ChangeEvent<HTMLInputElement>) {
     const { value } = event.target;
+    console.log('--slider', value, inputRef.current.value);
     onSliderValueChange(id, value);
   }
 

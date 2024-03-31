@@ -1,4 +1,4 @@
-import { useState, useRef } from 'react';
+import { useRef } from 'react';
 
 import { Select } from 'components/select';
 
@@ -20,27 +20,29 @@ const initialFiltersValues: Filter = {
   price: undefined
 };
 export function ListingsSearch() {
-  const [filters, setFilters] = useState<Filter>(initialFiltersValues);
+  // const [filters, setFilters] = useState<Filter>(initialFiltersValues);
   const { searchListings, resetListings } = useListings();
 
   const selectRef = useRef<HTMLSelectElement[]>([]);
   const sliderRef = useRef<HTMLInputElement>(null);
+  const filtersRef = useRef(initialFiltersValues);
 
   const handleButtonSearchClick = () => {
     searchListings({
-      bedrooms: filters.bedrooms,
-      bathrooms: filters.bathrooms,
-      parking: filters.parking,
-      priceRange: filters.price
+      bedrooms: filtersRef.current.bedrooms,
+      bathrooms: filtersRef.current.bathrooms,
+      parking: filtersRef.current.parking,
+      priceRange: filtersRef.current.price
     });
   };
 
   const handleFiltersValueChange = (id: string, value: string) => {
-    setFilters((previous) => ({ ...previous, [id]: parseInt(value) }));
+    const previous = filtersRef.current;
+    filtersRef.current = { ...previous, [id]: parseInt(value) };
   };
 
   const handleButtonResetClick = () => {
-    setFilters(initialFiltersValues);
+    filtersRef.current = initialFiltersValues;
     resetListings();
     if (selectRef.current && sliderRef.current) {
       selectRef.current[0].value = '';
