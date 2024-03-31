@@ -20,7 +20,6 @@ const initialFiltersValues: Filter = {
   price: undefined
 };
 export function ListingsSearch() {
-  // const [filters, setFilters] = useState<Filter>(initialFiltersValues);
   const { searchListings, resetListings } = useListings();
 
   const selectRef = useRef<HTMLSelectElement[]>([]);
