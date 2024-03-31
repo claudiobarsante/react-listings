@@ -51,7 +51,7 @@ export function ListingsSearch() {
   };
 
   return (
-    <section className="flex flex-1 items-center border border-red-300">
+    <section className="flex items-center justify-between px-6">
       <Select
         ref={(element) => element && (selectRef.current[0] = element)}
         id="bedrooms"
@@ -81,13 +81,14 @@ export function ListingsSearch() {
         maxValue={1000000}
         onSliderValueChange={handleFiltersValueChange}
       />
-
-      <Button variant="primary" aria-label="search" type="button" onClick={handleButtonSearchClick}>
-        Search
-      </Button>
-      <Button variant="outline" aria-label="reset" type="button" onClick={handleButtonResetClick}>
-        Reset
-      </Button>
+      <div className="flex items-center justify-normal gap-5">
+        <Button variant="primary" aria-label="search" type="button" onClick={handleButtonSearchClick}>
+          Search
+        </Button>
+        <Button variant="outline" aria-label="reset" type="button" onClick={handleButtonResetClick}>
+          Reset
+        </Button>
+      </div>
     </section>
   );
 }
