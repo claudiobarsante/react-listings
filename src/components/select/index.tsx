@@ -41,32 +41,32 @@ const SelectComponent: React.ForwardRefRenderFunction<HTMLSelectElement, SelectP
   }
 
   return (
-    <article>
-      <label className="text-md mr-2 border border-zinc-950 font-medium text-zinc-700">
+    <article className="flex items-center justify-start gap-2">
+      <label className="text-md font-medium text-zinc-700" aria-label={`${label.toLowerCase()}`}>
         {label}
-        <select
-          ref={ref}
-          aria-label={`${label.toLowerCase()}`}
-          className={twMerge(
-            'rounded-sm border border-zinc-300 bg-gray-200 font-medium',
-            'p-2.5 text-sm text-zinc-700',
-            'focus:border-zinc-400 focus:ring-4 focus:ring-zinc-200'
-          )}
-          onChange={(e) => handleChange(e)}
-        >
-          {option.length > 0 &&
-            option.map((o) => (
-              <option key={o.key} value={o.value}>
-                {o.text}
-              </option>
-            ))}
-        </select>
       </label>
+      <select
+        ref={ref}
+        aria-label={`${label.toLowerCase()}`}
+        className={twMerge(
+          'h-[35px] rounded-sm border border-zinc-300 bg-gray-200 font-medium outline-none',
+          'p-1 text-sm text-zinc-700',
+          'focus:border-zinc-400 focus:ring-4 focus:ring-zinc-200'
+        )}
+        onChange={(e) => handleChange(e)}
+      >
+        {option.length > 0 &&
+          option.map((o) => (
+            <option key={o.key} value={o.value}>
+              {o.text}
+            </option>
+          ))}
+      </select>
     </article>
   );
 };
 
 //todo: check why is rerendering if the props didn't change, something to do with refs
 export const Select = memo(forwardRef(SelectComponent), (prevProps, nextProps) => {
-  return Object.is(prevProps.maxValue, nextProps.maxValue);
+  return Object.is(prevProps.label, nextProps.label);
 });

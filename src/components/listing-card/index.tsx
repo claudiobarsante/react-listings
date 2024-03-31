@@ -21,9 +21,7 @@ export function ListingCard(props: Listing) {
         </Card.ListingInterior>
         <Card.ListingPrice>{formatPrice(SalePrice)}</Card.ListingPrice>
         <Link to={`listings/${Id}`}>
-          <Card.ListingButton variant="primary" className="my-3">
-            View Details
-          </Card.ListingButton>
+          <Card.ListingButton variant="primary">View Details</Card.ListingButton>
         </Link>
       </Card.Content>
     </Card.Root>
