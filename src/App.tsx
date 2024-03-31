@@ -1,6 +1,8 @@
 import { RouterProvider } from 'react-router-dom';
+import { ErrorBoundary } from 'react-error-boundary';
 import { Toaster } from 'sonner';
 
+import { ErrorPage } from 'pages/error';
 import { ListingsProvider } from 'hooks/context/use-listings';
 import { router } from './routes';
 
@@ -9,7 +11,9 @@ export function App() {
   return (
     <ListingsProvider>
       <Toaster richColors />
-      <RouterProvider router={router} />
+      <ErrorBoundary FallbackComponent={ErrorPage}>
+        <RouterProvider router={router} />
+      </ErrorBoundary>
     </ListingsProvider>
   );
 }

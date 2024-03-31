@@ -1,6 +1,6 @@
-import { Listing, useListings } from 'hooks/context/use-listings';
 import { useState, useEffect } from 'react';
-import { useParams } from 'react-router-dom';
+import { useNavigate, useParams } from 'react-router-dom';
+import { Listing, useListings } from 'hooks/context/use-listings';
 
 import { Button } from 'components/button';
 import { Heart } from 'lucide-react';
@@ -8,13 +8,17 @@ import { Form } from 'components/form';
 
 export function ListingDetailsPage() {
   const [listing, setListing] = useState<Listing>();
+  // -- react-router-dom -
   const { id } = useParams();
+  const navigate = useNavigate();
+  // -- from ListingsContext -
   const { getListing } = useListings();
 
   useEffect(() => {
     const result = getListing(Number(id));
+    if (!result) navigate('/404');
     setListing(result);
-  }, [getListing, id]);
+  }, [getListing, id, navigate]);
 
   return (
     <main className="grid-cols-listingDetails grid max-w-7xl gap-10">
