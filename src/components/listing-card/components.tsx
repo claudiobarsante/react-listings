@@ -3,14 +3,19 @@ import { ComponentProps } from 'react';
 
 type CardRootProps = ComponentProps<'article'>;
 function CardRoot(props: CardRootProps) {
-  return <article className="max-w-sm rounded border border-gray-200 shadow-lg" {...props}></article>;
+  return (
+    <article
+      className="relative h-[24rem] max-w-[16rem] rounded-sm border border-zinc-200 shadow-xl"
+      {...props}
+    ></article>
+  );
 }
 
 type CardImageProps = ComponentProps<'img'>;
 function CardImage(props: CardImageProps) {
   return (
     <figure>
-      <img className="w-full" {...props} />
+      <img className="h-[9rem] w-full" {...props} />
     </figure>
   );
 }
@@ -28,13 +33,13 @@ function CardListingTitle(props: CardListingTitleProps) {
 
 type CardListingLocationProps = ComponentProps<'span'>;
 function CardListingLocation(props: CardListingLocationProps) {
-  return <span className="text-sm leading-none text-zinc-500" {...props}></span>;
+  return <span className="absolute top-48 text-sm leading-none text-zinc-500" {...props}></span>;
 }
 
 type CardListingInteriorProps = ComponentProps<'span'>;
 function CardListingInterior(props: CardListingInteriorProps) {
   return (
-    <div className="flex items-center justify-start pt-2">
+    <div className="absolute bottom-28 flex items-center justify-start pt-2">
       <span className="text-sm text-zinc-500" {...props}></span>
     </div>
   );
@@ -43,13 +48,13 @@ function CardListingInterior(props: CardListingInteriorProps) {
 type CardListingPriceProps = ComponentProps<'span'>;
 
 function CardListingPrice(props: CardListingPriceProps) {
-  return <span className="pt-2 text-lg font-semibold text-zinc-800" {...props}></span>;
+  return <span className="absolute bottom-12 text-lg font-semibold text-zinc-800" {...props}></span>;
 }
 
 type CardListingButtonProps = ButtonProps;
 
 function CardListingButton(props: CardListingButtonProps) {
-  return <Button {...props}></Button>;
+  return <Button className="absolute bottom-2" {...props}></Button>;
 }
 export const Card = {
   Root: CardRoot,

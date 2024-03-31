@@ -30,7 +30,7 @@ const SliderComponent: React.ForwardRefRenderFunction<HTMLInputElement, SliderPr
   }
 
   return (
-    <article className="relative flex w-96 items-center justify-start gap-2 border border-black py-6">
+    <article className="relative flex w-96 items-center justify-start gap-2 py-6">
       <label htmlFor={id} className="text-md text-nowrap font-medium text-zinc-700" aria-labelledby={id}>
         {label}
       </label>
