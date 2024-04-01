@@ -12,7 +12,7 @@ type CardImageProps = ComponentProps<'img'>;
 function CardImage(props: CardImageProps) {
   return (
     <figure>
-      <img className="h-[11rem] w-full object-cover lg:h-[9rem]" {...props} />
+      <img className="h-[11rem] w-full object-cover lg:h-[10rem]" {...props} />
     </figure>
   );
 }
