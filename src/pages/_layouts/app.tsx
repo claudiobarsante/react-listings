@@ -3,7 +3,7 @@ import { Outlet } from 'react-router-dom';
 
 export function AppLayout() {
   return (
-    <div className="grid-cols-appSm md:grid-cols-appMd lg:grid-cols-appLg grid min-h-screen antialiased">
+    <div className="grid-cols-appSm md:grid-cols-appMd lg:grid-cols-appMd  xl:grid-cols-appXl grid min-h-screen antialiased">
       <header className="col-start-2">
         <Header />
       </header>
