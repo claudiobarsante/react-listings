@@ -10,7 +10,7 @@ export function AppLayout() {
       <main className="col-start-2">
         <Outlet />
       </main>
-      <footer className="col-start-2 lg:pl-5">
+      <footer className="col-start-2 mt-auto lg:pl-5">
         <div className="flex items-center justify-center">
           <span className="text-sm font-medium text-zinc-500">
             &copy; <time>{new Date().getFullYear()}</time> Number8 - Frontend assessment
