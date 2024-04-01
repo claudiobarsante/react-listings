@@ -1,15 +1,20 @@
 import { useState, useEffect, useRef } from 'react';
 import { Helmet } from 'react-helmet-async';
 import { useNavigate, useParams } from 'react-router-dom';
+import { Modal } from 'react-responsive-modal';
 import { Listing, useListings } from 'hooks/context/use-listings';
 
 import { Button } from 'components/button';
-import { Heart } from 'lucide-react';
+import { Heart, Home } from 'lucide-react';
 import { Form } from 'components/form';
 import { formatDate, formatPrice } from 'utils/format/index';
-
+import 'react-responsive-modal/styles.css';
 export function ListingDetailsPage() {
   const [listing, setListing] = useState<Listing>();
+  const [open, setOpen] = useState(false);
+
+  const onOpenModal = () => setOpen(true);
+  const onCloseModal = () => setOpen(false);
   // -- react-router-dom -
   const { id } = useParams();
   const navigate = useNavigate();
@@ -29,7 +34,9 @@ export function ListingDetailsPage() {
 
   const handleSaveToFavorites = () => {
     saveFavoriteListing(favoriteListings, currentListingRef.current!);
+    onOpenModal();
   };
+
   return (
     <>
       <Helmet>
@@ -98,6 +105,27 @@ export function ListingDetailsPage() {
           <Form />
         </section>
       </div>
+      <Modal open={open} onClose={onCloseModal} center>
+        <article className="relative h-96 w-auto lg:h-96 lg:w-[25rem]">
+          <h2 className="mb-5 text-lg font-bold tracking-tight text-zinc-700">Your favorites listings</h2>
+          <div className="flex  flex-col justify-start gap-3 lg:gap-2">
+            {favoriteListings.length > 0 &&
+              favoriteListings.map((listing) => (
+                <span key={listing.Id} className=" text-sm font-semibold text-zinc-700 ">
+                  <Home strokeWidth={2.5} className="mb-1 inline size-5 text-orange-600" /> {listing.Title}
+                </span>
+              ))}
+          </div>
+
+          <Button
+            variant="outline"
+            className="absolute bottom-2 flex items-center justify-center"
+            onClick={onCloseModal}
+          >
+            <span className="pl-2">Close</span>
+          </Button>
+        </article>
+      </Modal>
     </>
   );
 }
