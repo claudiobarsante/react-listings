@@ -23,10 +23,14 @@ export const formatPrice = (price: number): string => {
   return format[length];
 };
 
-const MONTHS_ABBREVIATIONS = ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec'];
+const MONTHS_ABBREVIATIONS = ['Jan', 'Feb', 'Mar', 'Abr', 'May', 'Jun', 'Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec'];
 
 export const formatDate = (date: string): string => {
+  const parsed = Date.parse(date);
+  if (isNaN(parsed)) return '#error#';
+
   let output = '';
+
   try {
     const currentDate: Date = new Date(date);
     const month: number = currentDate.getMonth();
@@ -37,7 +41,8 @@ export const formatDate = (date: string): string => {
 
     output = `${monthAbbreviation} ${day}, ${year}`;
   } catch (error) {
-    output = 'error';
+    output = '#error#';
   }
+
   return output;
 };

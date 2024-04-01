@@ -10,7 +10,7 @@
     "preview": "vite preview",
     "typecheck": "tsc --project tsconfig.json --noEmit",
     "test": "jest",
-    "test:watch": "yarn test --watch"
+    "test:watch": "npm run test --watch"
   },
   "dependencies": {
     "@hookform/resolvers": "^3.3.4",
