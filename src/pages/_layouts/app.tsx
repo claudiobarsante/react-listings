@@ -1,9 +1,9 @@
-import Header from 'components/header';
+import { Header } from 'components/header';
 import { Outlet } from 'react-router-dom';
 
 export function AppLayout() {
   return (
-    <div className="grid-cols-appSm md:grid-cols-appMd lg:grid-cols-appMd  xl:grid-cols-appXl grid min-h-screen antialiased">
+    <div className="grid min-h-screen grid-cols-appSm  antialiased md:grid-cols-appMd lg:grid-cols-appMd xl:grid-cols-appXl">
       <header className="col-start-2">
         <Header />
       </header>
