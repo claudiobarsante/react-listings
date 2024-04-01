@@ -45,7 +45,7 @@ export function Form() {
   return (
     <form aria-labelledby="contact" onSubmit={handleSubmit(handleContactFormSubmit)}>
       <fieldset>
-        <div className="flex h-[24.2rem] flex-col items-center justify-center gap-4 rounded-sm border border-zinc-200 bg-zinc-100 px-4">
+        <div className="flex h-[26.9rem] flex-col items-center justify-center gap-6 rounded-sm border border-zinc-200 bg-zinc-100 px-4">
           <h2 id="contact" className="mt-2 font-semibold text-zinc-700">
             Contact Agent
           </h2>
