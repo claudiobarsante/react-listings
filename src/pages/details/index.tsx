@@ -1,4 +1,4 @@
-import { useState, useEffect } from 'react';
+import { useState, useEffect, useRef } from 'react';
 import { Helmet } from 'react-helmet-async';
 import { useNavigate, useParams } from 'react-router-dom';
 import { Listing, useListings } from 'hooks/context/use-listings';
@@ -14,14 +14,22 @@ export function ListingDetailsPage() {
   const { id } = useParams();
   const navigate = useNavigate();
   // -- from ListingsContext -
-  const { getListing } = useListings();
+  const { favoriteListings, getListing, saveFavoriteListing } = useListings();
+
+  const currentListingRef = useRef<Listing>();
 
   useEffect(() => {
     const result = getListing(Number(id));
+
     if (!result) navigate('/404');
+
+    currentListingRef.current = result;
     setListing(result);
   }, [getListing, id, navigate]);
 
+  const handleSaveToFavorites = () => {
+    saveFavoriteListing(favoriteListings, currentListingRef.current!);
+  };
   return (
     <>
       <Helmet>
@@ -78,7 +86,11 @@ export function ListingDetailsPage() {
         </section>
         <section>
           <div className="flex h-20 flex-col items-end justify-start border border-green-500">
-            <Button variant="primary" className="bottom-2 flex items-center justify-center">
+            <Button
+              variant="primary"
+              className="bottom-2 flex items-center justify-center"
+              onClick={handleSaveToFavorites}
+            >
               <Heart className="size-4" />
               <span className="pl-2">Save property</span>
             </Button>
