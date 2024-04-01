@@ -54,7 +54,7 @@ export function ListingsSearch() {
 
   return (
     <section
-      className={twMerge('flex w-auto lg:flex-row lg:items-center lg:justify-between', 'mb-3 flex-col gap-y-4 pt-4')}
+      className={twMerge('mb-3 flex w-auto flex-col gap-y-4 pt-4', 'lg:flex-row lg:items-center lg:justify-between')}
     >
       <Select
         ref={(element) => element && (selectRef.current[0] = element)}
