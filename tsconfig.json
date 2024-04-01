@@ -15,6 +15,9 @@
     "noEmit": true,
     "jsx": "react-jsx",
 
+    /*ts-jest*/
+    "esModuleInterop":true,
+
     /* Linting */
     "strict": true,
     "noUnusedLocals": true,
