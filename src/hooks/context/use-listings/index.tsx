@@ -66,7 +66,9 @@ const ListingsProvider = ({ children }: ListingsProviderProps) => {
   };
 
   const searchListings = ({ bedrooms, bathrooms, parking, priceRange }: SearchFilters) => {
+    console.log('--filters', bedrooms, bathrooms, parking, priceRange);
     const filteredListings = filterListings({ listings: INITIAL_VALUE, bedrooms, bathrooms, parking, priceRange });
+    console.log('---results', filteredListings);
     setListings(filteredListings);
   };
 

@@ -1,11 +1,11 @@
 // -- types
 import { Listing, SearchFilters } from 'hooks/context/use-listings';
 
-type filterListings = {
+export type FilterListings = {
   listings: Listing[];
 } & SearchFilters;
 
-export const filterListings = ({ listings, bedrooms, bathrooms, parking, priceRange }: filterListings): Listing[] => {
+export const filterListings = ({ listings, bedrooms, bathrooms, parking, priceRange }: FilterListings): Listing[] => {
   const filteredListings = listings.filter((listing) => {
     const bedroomsMatch = bedrooms === undefined || listing.Bedrooms === bedrooms;
     const bathroomsMatch = bathrooms === undefined || listing.Bathrooms === bathrooms;
