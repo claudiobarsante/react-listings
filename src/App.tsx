@@ -12,7 +12,7 @@ export function App() {
   return (
     <ListingsProvider>
       <HelmetProvider>
-        <Helmet titleTemplate="⚡ %s | Frontend assessment" />
+        <Helmet titleTemplate="%s | Frontend assessment" />
         <Toaster richColors />
         <ErrorBoundary FallbackComponent={ErrorPage}>
           <RouterProvider router={router} />
