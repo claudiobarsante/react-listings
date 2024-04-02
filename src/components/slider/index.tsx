@@ -2,7 +2,7 @@ import { forwardRef, useState, useRef } from 'react';
 import mergeRefs from 'merge-refs';
 import { formatPrice } from 'utils/format';
 
-type SliderProps = {
+export type SliderProps = {
   id: string;
   label: string;
   maxValue: number;
@@ -47,7 +47,11 @@ const SliderComponent: React.ForwardRefRenderFunction<HTMLInputElement, SliderPr
         className="h-2 w-full cursor-pointer appearance-none rounded-lg bg-gray-200"
         onChange={(e) => handleChange(e)}
       />
-      <span hidden={!showSliderPrice} className="absolute right-2 top-2 text-sm text-zinc-700 lg:right-5">
+      <span
+        hidden={!showSliderPrice}
+        className="absolute right-2 top-2 text-sm text-zinc-700 lg:right-5"
+        aria-label="price"
+      >
         {formatPrice(Number(sliderValue))}
       </span>
     </article>
