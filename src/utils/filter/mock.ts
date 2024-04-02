@@ -1,4 +1,4 @@
-import { Listing } from 'hooks/context/use-listings';
+import { Listing } from 'hooks/context/use-listings/types';
 
 export const LISTING: Listing[] = [
   {

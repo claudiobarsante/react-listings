@@ -2,7 +2,8 @@ import { useState, useEffect, useRef } from 'react';
 import { Helmet } from 'react-helmet-async';
 import { useNavigate, useParams } from 'react-router-dom';
 
-import { Listing, useListings } from 'hooks/context/use-listings';
+import { useListings } from 'hooks/context/use-listings';
+import { Listing } from 'hooks/context/use-listings/types';
 
 import { Button } from 'components/button';
 import { Heart } from 'lucide-react';

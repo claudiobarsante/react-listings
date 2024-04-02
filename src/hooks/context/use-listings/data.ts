@@ -1,4 +1,4 @@
-import { Listing } from '.';
+import { Listing } from './types';
 
 export const INITIAL_VALUE: Listing[] = [
   {

@@ -1,5 +1,6 @@
 // -- types
-import { Listing, SearchFilters } from 'hooks/context/use-listings';
+import { SearchFilters } from 'hooks/context/use-listings/types';
+import { Listing } from 'hooks/context/use-listings/types';
 
 export type FilterListings = {
   listings: Listing[];

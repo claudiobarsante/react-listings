@@ -2,7 +2,7 @@ import { Modal } from 'react-responsive-modal';
 import { Home } from 'lucide-react';
 
 import { Button } from 'components/button';
-import { Listing } from 'hooks/context/use-listings';
+import { Listing } from 'hooks/context/use-listings/types';
 
 type ListingFavoritesModalProps = {
   favoriteListings: Listing[];

@@ -2,7 +2,7 @@ import { render, screen, fireEvent } from '@testing-library/react';
 import { Router } from 'react-router-dom';
 import { createMemoryHistory } from 'history';
 import { ListingCard } from '.';
-import { Listing } from 'hooks/context/use-listings';
+import { Listing } from 'hooks/context/use-listings/types';
 import { formatPrice } from 'utils/format';
 
 describe('ListingCard component', () => {

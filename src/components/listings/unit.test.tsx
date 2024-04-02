@@ -2,7 +2,7 @@ import { render, screen, renderHook, act, cleanup } from 'utils/tests/test-utils
 import { MemoryRouter } from 'react-router-dom';
 
 import { Listings } from '.';
-import { Listing } from 'hooks/context/use-listings';
+import { Listing } from 'hooks/context/use-listings/types';
 import { useListings } from 'hooks/context/use-listings';
 
 describe('Listings component', () => {

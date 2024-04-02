@@ -1,4 +1,4 @@
-import { Listing } from 'hooks/context/use-listings';
+import { Listing } from 'hooks/context/use-listings/types';
 
 export const addToFavoritesListings = (favoriteListings: Listing[], listing: Listing): Listing[] => {
   // -- check if the listing is already in the favorite listings

@@ -1,5 +1,5 @@
 import { CardListingDetails } from './components';
-import { Listing } from 'hooks/context/use-listings';
+import { Listing } from 'hooks/context/use-listings/types';
 import { formatDate, formatPrice } from 'utils/format';
 
 type ListingCardDetailsProps = {

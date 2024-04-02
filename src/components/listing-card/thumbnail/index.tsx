@@ -2,7 +2,7 @@ import { Link } from 'react-router-dom';
 import { Bath, BedDouble, MapPin } from 'lucide-react';
 import { Card } from './components';
 //-- Types
-import { Listing } from 'hooks/context/use-listings';
+import { Listing } from 'hooks/context/use-listings/types';
 import { formatPrice } from 'utils/format';
 
 export function ListingCard(props: Listing) {

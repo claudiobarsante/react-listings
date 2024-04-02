@@ -2,52 +2,13 @@ import { createContext, useContext, useState } from 'react';
 import { filterListings, getListingById } from 'utils/filter';
 import { INITIAL_VALUE } from './data';
 import { addToFavoritesListings } from 'utils/listing';
-
-export type Listing = {
-  Id: number;
-  DateListed: string;
-  Title: string;
-  Description: string;
-  'Sale Price': number;
-  ThumbnailURL: string;
-  PictureURL: string;
-  Location: string;
-  Sqft: number;
-  Bedrooms: number;
-  Bathrooms: number;
-  Parking: number;
-  YearBuilt: number;
-};
-
-export type SearchFilters = {
-  bedrooms?: number;
-  bathrooms?: number;
-  parking?: number;
-  priceRange?: number;
-};
-
-type ListingsContextData = {
-  favoriteListings: Listing[];
-  saveFavoriteListing: (favoriteListings: Listing[], listing: Listing) => void;
-  getFavoriteListings: () => Listing[] | undefined;
-  listings: Listing[];
-  getListing: (id: number) => Listing | undefined;
-  resetListings: () => void;
-  searchListings: ({ bedrooms, bathrooms, parking, priceRange }: SearchFilters) => void;
-};
+import { Listing } from './types';
+import { SearchFilters } from './types';
+import { ListingsContextData } from './types';
+import { ListingsContextValues } from './types';
 
 type ListingsProviderProps = {
   children: React.ReactNode;
-};
-
-const ListingsContextValues = {
-  favoriteListings: [],
-  saveFavoriteListing: () => null,
-  getFavoriteListings: () => undefined,
-  listings: [],
-  getListing: () => undefined,
-  resetListings: () => null,
-  searchListings: () => null
 };
 
 const ListingsContext = createContext<ListingsContextData>(ListingsContextValues);
@@ -66,9 +27,7 @@ const ListingsProvider = ({ children }: ListingsProviderProps) => {
   };
 
   const searchListings = ({ bedrooms, bathrooms, parking, priceRange }: SearchFilters) => {
-    console.log('--filters', bedrooms, bathrooms, parking, priceRange);
     const filteredListings = filterListings({ listings: INITIAL_VALUE, bedrooms, bathrooms, parking, priceRange });
-    console.log('---results', filteredListings);
     setListings(filteredListings);
   };
 

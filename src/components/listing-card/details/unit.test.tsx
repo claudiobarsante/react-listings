@@ -1,7 +1,7 @@
 import { render, screen } from '@testing-library/react';
 
 import { ListingCardDetails } from '.';
-import { Listing } from 'hooks/context/use-listings';
+import { Listing } from 'hooks/context/use-listings/types';
 import { formatDate, formatPrice } from 'utils/format';
 
 describe('ListingCardDetails', () => {
