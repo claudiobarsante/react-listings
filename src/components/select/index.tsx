@@ -66,7 +66,4 @@ const SelectComponent: React.ForwardRefRenderFunction<HTMLSelectElement, SelectP
   );
 };
 
-//todo: check why is rerendering if the props didn't change, something to do with refs
-export const Select = memo(forwardRef(SelectComponent), (prevProps, nextProps) => {
-  return Object.is(prevProps.onSelectValueChange, nextProps.onSelectValueChange);
-});
+export const Select = forwardRef(SelectComponent);
