@@ -1,8 +1,7 @@
-//import userEvent from '@testing-library/user-event';
 import { render, screen, fireEvent } from 'utils/tests/test-utils';
 import { Header } from '.';
 import { MemoryRouter, Router } from 'react-router-dom';
-//import userEvent from '@testing-library/user-event';
+
 import { createMemoryHistory } from 'history';
 describe('Header component', () => {
   it('renders the image with correct alt text and dimensions', () => {
@@ -21,7 +20,7 @@ describe('Header component', () => {
 
   it('navigates to the correct route when the link is clicked', async () => {
     const history = createMemoryHistory();
-    history.push = jest.fn();
+    //history.push = jest.fn();
 
     render(
       <Router location={history.location} navigator={history}>
