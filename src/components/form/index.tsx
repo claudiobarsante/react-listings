@@ -32,9 +32,8 @@ export function Form() {
     }
   });
 
-  const handleContactFormSubmit: SubmitHandler<ContactForm> = (data: ContactForm) => {
-    console.log('--data sent--', data);
-    toast.success('Your message has been sent', {
+  const handleContactFormSubmit: SubmitHandler<ContactForm> = () => {
+    toast.success('Message sent successfully', {
       position: 'top-center'
     });
     resetField('fullname');
