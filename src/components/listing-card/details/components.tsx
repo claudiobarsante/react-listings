@@ -69,12 +69,12 @@ function CardDetailsContentCol(props: CardDetailsContentColProps) {
 
 type CardDetailsContentColTopItemProps = ComponentProps<'span'>;
 function CardDetailsContentColTopItem(props: CardDetailsContentColTopItemProps) {
-  return <span className="text-lg font-semibold tracking-tight text-zinc-800" {...props}></span>;
+  return <span className="text-sm font-semibold tracking-tight text-zinc-800 lg:text-lg" {...props}></span>;
 }
 type CardDetailsContentColBottomItemProps = ComponentProps<'span'>;
 
 function CardDetailsContentColBottomItem(props: CardDetailsContentColBottomItemProps) {
-  return <span className="font-semibold text-zinc-400" {...props}></span>;
+  return <span className="text-sm font-semibold text-zinc-400 lg:text-lg" {...props}></span>;
 }
 
 type CardDetailsDescriptionProps = ComponentProps<'p'>;
