@@ -1,4 +1,4 @@
-import { render, screen, renderHook, act } from 'utils/tests/test-utils';
+import { render, screen, renderHook, act, cleanup } from 'utils/tests/test-utils';
 import { MemoryRouter } from 'react-router-dom';
 
 import { Listings } from '.';
@@ -16,6 +16,8 @@ describe('Listings component', () => {
       </MemoryRouter>
     );
     expect(screen.getByText('No results')).toBeInTheDocument();
+
+    cleanup(); //--unmmounting useListings hook
   });
 
   it('should renders ListingCard components when listings array is not empty', () => {
