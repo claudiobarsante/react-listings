@@ -1,4 +1,4 @@
-import { createContext, useContext, useState } from 'react';
+import { createContext, useCallback, useContext, useState } from 'react';
 import { filterListings, getListingById } from 'utils/filter';
 import { INITIAL_VALUE } from './data';
 import { addToFavoritesListings } from 'utils/listing';
@@ -21,27 +21,30 @@ const ListingsProvider = ({ children }: ListingsProviderProps) => {
     setListings(INITIAL_VALUE);
   };
 
-  const getListing = (id: number): Listing | undefined => {
-    const listing = getListingById(listings, id);
-    return listing;
-  };
+  const getListing = useCallback(
+    (id: number): Listing | undefined => {
+      const listing = getListingById(listings, id);
+      return listing;
+    },
+    [listings]
+  );
 
-  const searchListings = ({ bedrooms, bathrooms, parking, priceRange }: SearchFilters) => {
+  const searchListings = useCallback(({ bedrooms, bathrooms, parking, priceRange }: SearchFilters) => {
     const filteredListings = filterListings({ listings: INITIAL_VALUE, bedrooms, bathrooms, parking, priceRange });
     setListings(filteredListings);
-  };
+  }, []);
 
-  const saveFavoriteListing = (favoriteListings: Listing[], listing: Listing) => {
+  const saveFavoriteListing = useCallback((favoriteListings: Listing[], listing: Listing) => {
     const result: Listing[] = addToFavoritesListings(favoriteListings, listing);
     // -- if result is empty, the listing is already saved in the favorite listings. It's not necessary to save it again.
     if (result.length === 0) return;
 
     setfavoriteListings(result);
-  };
+  }, []);
 
-  const getFavoriteListings = (): Listing[] => {
+  const getFavoriteListings = useCallback((): Listing[] => {
     return favoriteListings;
-  };
+  }, [favoriteListings]);
 
   return (
     <ListingsContext.Provider
