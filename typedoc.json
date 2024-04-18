@@ -1,0 +1,7 @@
+{
+     // Comments are supported, like tsconfig.json
+     "entryPoints": ["./src/utils/filter/index.ts",
+     "./src/hooks/context/use-listings/types.ts",
+"./src/components/button/index.tsx"],
+     "out": "docs"
+ }

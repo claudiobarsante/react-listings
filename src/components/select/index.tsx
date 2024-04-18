@@ -1,4 +1,4 @@
-import { useState, useEffect, useId, memo, forwardRef } from 'react';
+import { useState, useEffect, useId, forwardRef } from 'react';
 import { twMerge } from 'tailwind-merge';
 
 import { loadSelectOptions } from 'utils/select/load-select-options';

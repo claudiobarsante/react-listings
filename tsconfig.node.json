@@ -5,7 +5,13 @@
     "module": "ESNext",
     "moduleResolution": "bundler",
     "allowSyntheticDefaultImports": true,
-    "strict": true
+    "strict": true,
+    "normalTypeScriptOptions": "here" // typedoc
+  
   },
+  "typedocOptions": {
+    "entryPoints": ["src/utils/index.ts"],
+    "out": "docs"
+},
   "include": ["vite.config.ts"]
 }
