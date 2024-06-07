@@ -1,6 +1,6 @@
-import { useForm, SubmitHandler } from 'react-hook-form';
-import { toast } from 'sonner';
 import { yupResolver } from '@hookform/resolvers/yup';
+import { SubmitHandler, useForm } from 'react-hook-form';
+import { toast } from 'sonner';
 import * as yup from 'yup';
 
 import { Button } from 'components/button';
@@ -8,10 +8,17 @@ import { FormInput } from 'components/input';
 import { FormTextArea } from 'components/text-area';
 
 const schema = yup.object({
-  fullname: yup.string().required('Full name is required'),
+  fullname: yup
+    .string()
+    .required('Full name is required')
+    .min(5, 'Full name must be at least 5 characters')
+    .max(80, 'Full name must be less than 80 characters'),
   email: yup.string().required('E-mail is required').email('Invalid email address'),
-  phonenumber: yup.string().required('Phone number is required'),
-  comments: yup.string().required('Comments must be at least 10 characters')
+  phonenumber: yup
+    .string()
+    .matches(/^[0-9 -]*$/, 'Only numbers, spaces, and hyphens are allowed')
+    .required('Phone number is required'),
+  comments: yup.string().required('Comments are required').min(5, 'Comments must be at least 5 characters')
 });
 
 type ContactForm = yup.InferType<typeof schema>;
@@ -69,7 +76,7 @@ export function Form() {
           />
           <FormInput
             id="phonenumber"
-            type="number"
+            type="text"
             placeholder="Phone Number *"
             {...register('phonenumber')}
             aria-label="phone number"
